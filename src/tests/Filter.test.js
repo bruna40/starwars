@@ -6,55 +6,7 @@ import planetsResponse from '../mocks/planetsResponse';
 import userEvent from '@testing-library/user-event';
 
 
-describe("Esperado que esteja no documento: ", () => {
-  it("input", () => {
-    render(<App />);
-    const input = screen.getByRole('textbox');
-    expect(input).toBeInTheDocument();
-  });
-  it("input number", () => {
-    render(<App />);
-    const input = screen.getByRole('spinbutton')
-    expect(input).toBeInTheDocument();
-  });
-  it("button", ()=>{
-    render(<App />);
-    const button = screen.getByRole('button', {  name: /aplicar/i})
-    expect(button).toBeInTheDocument();
-  })
-});
-
-describe("Testando se digitado no input acontece uma busca personalizada", ()=>{
-  it("input", () => {
-    render(<App />);
-    const input = screen.getByRole('textbox');
-    userEvent.type(input, "teste")
-    input.dispatchEvent(new Event('input'));
-    expect(input.value).toBe('teste');
-  });
-
-  it("input number", () => {
-    render(<App />);
-    const input = screen.getByRole('spinbutton')
-    userEvent.type(input, "")
-    input.dispatchEvent(new Event('input'));
-    expect(input.value).toBe('0');
-  });
-
-  it("Quando digitado no input o array de data deve ser mudado", ()=>{
-    render(<App />);
-    const input = screen.getByRole('textbox');
-    userEvent.type(input, "Tatooine")
-    input.dispatchEvent(new Event('input'));
-    expect(input.value).toBe('Tatooine');
-    setTimeout(() => {
-      const info = screen.getByText('Tatooine');
-      expect(info).toBeInTheDocument();
-    }, 1000);
-  })
-});
-
-describe('Testa se os filtros estão funcionando corretamente', () => {
+describe('Testa se os filtros', () => {
 
   beforeEach(() => {
     global.fetch = jest.fn(mockFetch);
@@ -72,7 +24,6 @@ describe('Testa se os filtros estão funcionando corretamente', () => {
 
     await waitFor(() => screen.getByRole('table'));
     const columnInput = screen.getByTestId('column-filter')
-    const buttonTrash = screen.getByTestId('filter')
     const comparisonInput = screen.getByTestId('comparison-filter')
     const valueInput = screen.getByTestId('value-filter')
     const buttonInput = screen.getByTestId('button-filter')
@@ -81,7 +32,6 @@ describe('Testa se os filtros estão funcionando corretamente', () => {
     userEvent.selectOptions(comparisonInput, 'maior que')
     userEvent.type(valueInput, '1000')
     userEvent.click(buttonInput)
-    userEvent.click(buttonTrash)
 
     await waitFor(() => {
       expect(screen.getByText('Bespin')).toBeInTheDocument()
@@ -133,9 +83,42 @@ describe('Testa se os filtros estão funcionando corretamente', () => {
     expect(screen.getByText('Bespin')).toBeInTheDocument();
     expect(screen.getByText('Yavin IV')).toBeInTheDocument();
   })
+  it("Testa se o input ascendente", async () => {
+
+    await waitFor(() => screen.getByRole('table'));
+    const columnInput = screen.getByTestId('column-sort')
+    const comparisonInput = screen.getByTestId('column-sort-input-asc')
+    const buttonInput = screen.getByTestId('column-sort-button')
+
+    userEvent.selectOptions(columnInput, 'population')
+    userEvent.click(comparisonInput)
+    userEvent.click(buttonInput)
+
+    await waitFor(() => {
+      const allNames = screen.getAllByTestId('planet-name')
+      expect(allNames[0].textContent).toBe('Dagobah')
+    });
+  });
+
+  it("Testa se o input ascendente está funcionando", async () => {
+
+    await waitFor(() => screen.getByRole('table'));
+    const columnInput = screen.getByTestId('column-sort')
+    const comparisonInput = screen.getByTestId('column-sort-input-desc')
+    const buttonInput = screen.getByTestId('column-sort-button')
+
+    userEvent.selectOptions(columnInput, 'population')
+    userEvent.click(comparisonInput)
+    userEvent.click(buttonInput)
+
+    await waitFor(() => {
+      const allNames = screen.getAllByTestId('planet-name')
+      expect(allNames[0].textContent).toBe('Coruscant')
+    });
+  });
 
 
-  it("testa button de limpar filtros", async () => {
+  it("testa botao de limpar filtros", async () => {
 
     await waitFor(() => screen.getByRole('table'));
 

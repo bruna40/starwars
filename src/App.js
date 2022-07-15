@@ -1,5 +1,5 @@
 import React from 'react';
-import PlanetProvider from './context/PlanetContext';
+import PlanetProvider from './context/PlanetProvider';
 import Forms from './components/Forms';
 
 function App() {

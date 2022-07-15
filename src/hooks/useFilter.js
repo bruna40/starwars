@@ -1,13 +1,14 @@
 import { useContext } from 'react';
-import { PlanetsContext } from '../context/PlanetContext';
-import { NUMBER_ORDER_ASC, NUMBER_ORDER_DESC } from '../utils/numbersUtils';
+import PlanetContext from '../context/PlanetContext';
+
+const number = -1;
 
 const useFilter = () => {
-  const { data, input, setBody, arrayFiltered, body } = useContext(PlanetsContext);
+  const { data, input, setBody, arrayFiltered, body } = useContext(PlanetContext);
 
   const filterByName = () => {
     const nome = data
-      .filter((planet) => planet.name.toLowerCase().includes(input.toLowerCase()));
+      .filter((planet) => planet.name.includes(input));
     setBody(nome);
   };
   const filterByCategories = () => {
@@ -37,10 +38,10 @@ const useFilter = () => {
   const dataSort = () => {
     data.sort((a, b) => {
       if (a.name > b.name) {
-        return NUMBER_ORDER_ASC;
+        return 1;
       }
       if (a.name < b.name) {
-        return NUMBER_ORDER_DESC;
+        return number;
       }
       return 0;
     });

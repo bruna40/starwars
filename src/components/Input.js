@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { PlanetsContext } from '../context/PlanetContext';
+import PlanetContext from '../context/PlanetContext';
 
 export default function Input() {
-  const { input, setInput } = useContext(PlanetsContext);
+  const { input, setInput } = useContext(PlanetContext);
   const handleChange = ({ target: { value } }) => {
     setInput(value);
   };

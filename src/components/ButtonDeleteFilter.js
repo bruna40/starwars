@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import propTypes from 'prop-types';
-import { PlanetsContext } from '../context/PlanetContext';
+import PlanetContext from '../context/PlanetContext';
 
-const Button = ({ id, nome }) => {
-  const { arrayFiltered, setArrayFiltered } = useContext(PlanetsContext);
+const ButtonDeleteFilter = ({ id, nome }) => { // ja passa aqui a props
+  const { arrayFiltered, setArrayFiltered } = useContext(PlanetContext);
 
-  const handleSubmit = (index) => {
+  const handleSubmit = (filtrado) => {
     const filtered = arrayFiltered;
-    filtered.splice(index, 1);
+    filtered.splice(filtrado, 1);
     setArrayFiltered([...filtered]);
   };
 
@@ -27,9 +27,7 @@ const Button = ({ id, nome }) => {
   );
 };
 
-export default Button;
-
-Button.propTypes = {
+ButtonDeleteFilter.propTypes = {
   id: propTypes.number,
   nome: propTypes.shape({
     column: propTypes.string,
@@ -37,3 +35,5 @@ Button.propTypes = {
     value: propTypes.number,
   }),
 }.isRequired;
+
+export default ButtonDeleteFilter;

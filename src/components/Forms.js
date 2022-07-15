@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Button from './Button';
+import ButtonDeleteFilter from './ButtonDeleteFilter';
 import ButtonGeral from './ButtonGeral';
 import Input from './Input';
 import Select from './Select';
-import { PlanetsContext } from '../context/PlanetContext';
+import PlanetContext from '../context/PlanetContext';
 import useFilter from '../hooks/useFilter';
 import city from '../utils/Array';
+import Order from './Order';
 
 const Forms = () => {
   const {
@@ -13,7 +14,7 @@ const Forms = () => {
     input,
     filter,
     arrayFiltered,
-    body } = useContext(PlanetsContext);
+    body } = useContext(PlanetContext);
   const [header, setHeader] = useState([]);
   const { filterByCategories, filterByName, dataSort } = useFilter();
 
@@ -46,21 +47,22 @@ const Forms = () => {
       <Input />
       <Select />
       {arrayFiltered.length > 0
-        && arrayFiltered.map((item, index) => (
-          <Button id={ index } key={ index } nome={ item } />
+        && arrayFiltered.map((filt) => (
+          <ButtonDeleteFilter id={ filt } key={ filt } nome={ filt } />
         ))}
+      <Order />
       <ButtonGeral />
       <table>
         <thead>
           <tr>
-            {header.map((item, index) => (
-              <th key={ index }>{item}</th>
+            {header.map((item) => (
+              <th key={ item }>{item}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {body.map((item, index) => (
-            <tr key={ index }>
+          {body.map((item) => (
+            <tr key={ item }>
               {Object.values(item).map((value, chave) => (city.includes(value) ? (
                 <td key={ chave } data-testid="planet-name">
                   {value}

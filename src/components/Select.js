@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { PlanetsContext } from '../context/PlanetContext';
+import PlanetContext from '../context/PlanetContext';
 import { valuesDefinitions, keysFilter } from '../utils/KeysFilter';
 
 const Select = () => {
-  const { setFilter, AdicionarFiltros } = useContext(PlanetsContext);
+  const { setFilter, AdicionarFiltros } = useContext(PlanetContext);
   const [keys, setKeys] = useState({
     column: keysFilter[0],
     comparison: 'maior que',
@@ -55,7 +55,11 @@ const Select = () => {
         onChange={ handleChange }
         name="value"
       />
-      <button type="button" data-testid="button-filter" onClick={ handleSubmit }>
+      <button
+        type="button"
+        data-testid="button-filter"
+        onClick={ handleSubmit }
+      >
         Aplicar
       </button>
     </div>

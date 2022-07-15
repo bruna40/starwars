@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { PlanetsContext } from '../context/PlanetContext';
+import PlanetContext from '../context/PlanetContext';
 
 const ButtonGeral = () => {
-  const { setArrayFiltered, setBody, data } = useContext(PlanetsContext);
+  const { setArrayFiltered, setBody, data } = useContext(PlanetContext);
 
   const handleDeleteAll = () => {
     setArrayFiltered([]);
