@@ -37,5 +37,9 @@ export const Search = styled.div`
     justify-content: center;
     margin-bottom: 2rem;
     width: 100%;
+    border: 1px solid ${(props) => props.theme['gray-500']};
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: ${(props) => props.theme['gray-800']};
 
 `;

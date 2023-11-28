@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PlanetContext from '../../../context/PlanetContext';
+import Button from './style';
 
 const ButtonGeral = () => {
   const { setArrayFiltered, setBody, data } = useContext(PlanetContext);
@@ -9,9 +10,9 @@ const ButtonGeral = () => {
     setBody([...data]);
   };
   return (
-    <button type="button" data-testid="button-remove-filters" onClick={ handleDeleteAll }>
+    <Button type="button" data-testid="button-remove-filters" onClick={ handleDeleteAll }>
       Limpar Filtros
-    </button>
+    </Button>
   );
 };
 

@@ -12,6 +12,7 @@ export const OrderContainer = styled.div`
         color: #000;
         font-size: 1rem;
         font-weight: 500;
+        cursor: pointer;
 
         &:hover {
             background-color: #ccc;
@@ -42,4 +43,6 @@ export const OrderSelect = styled.select`
     color: #000;
     font-size: 1rem;
     font-weight: 500;
+    height: 2.4rem;
+    margin-top: 0.15rem;
 `;

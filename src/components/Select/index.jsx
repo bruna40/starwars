@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import PlanetContext from '../context/PlanetContext';
-import { valuesDefinitions, keysFilter } from '../utils/KeysFilter';
+import PlanetContext from '../../context/PlanetContext';
+import { valuesDefinitions, keysFilter } from '../../utils/KeysFilter';
+import { SelectContainer, SelectOptions } from './style';
 
 const Select = () => {
   const { setFilter, AdicionarFiltros } = useContext(PlanetContext);
@@ -27,27 +28,29 @@ const Select = () => {
   };
 
   return (
-    <div>
-      <select
-        data-testid="column-filter"
-        value={ keys.column }
-        onChange={ handleChange }
-        name="column"
-      >
-        {keysFilter.map((item, index) => (
-          <option key={ index }>{item}</option>
-        ))}
-      </select>
-      <select
-        data-testid="comparison-filter"
-        value={ keys.comparison }
-        onChange={ handleChange }
-        name="comparison"
-      >
-        {valuesDefinitions.map((item, index) => (
-          <option key={ index }>{item}</option>
-        ))}
-      </select>
+    <SelectContainer>
+      <SelectOptions>
+        <select
+          data-testid="column-filter"
+          value={ keys.column }
+          onChange={ handleChange }
+          name="column"
+        >
+          {keysFilter.map((item, index) => (
+            <option key={ index }>{item}</option>
+          ))}
+        </select>
+        <select
+          data-testid="comparison-filter"
+          value={ keys.comparison }
+          onChange={ handleChange }
+          name="comparison"
+        >
+          {valuesDefinitions.map((item, index) => (
+            <option key={ index }>{item}</option>
+          ))}
+        </select>
+      </SelectOptions>
       <input
         type="number"
         data-testid="value-filter"
@@ -62,7 +65,7 @@ const Select = () => {
       >
         Aplicar
       </button>
-    </div>
+    </SelectContainer>
   );
 };
 
