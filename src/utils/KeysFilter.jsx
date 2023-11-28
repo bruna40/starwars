@@ -11,3 +11,19 @@ export const valuesDefinitions = [
   'menor que',
   'igual a',
 ];
+
+export const valuesTable = [
+  'Name',
+  'Rotation Period',
+  'Orbital Period',
+  'Diameter',
+  'Climate',
+  'Gravity',
+  'Terrain',
+  'Surface Water',
+  'Population',
+  'Films',
+  'Created',
+  'Edited',
+  'Url',
+];

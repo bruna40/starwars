@@ -13,6 +13,7 @@ export default function Input() {
         data-testid="name-filter"
         value={ input }
         onChange={ handleChange }
+        placeholder="Digite o nome do planeta"
       />
     </div>
   );

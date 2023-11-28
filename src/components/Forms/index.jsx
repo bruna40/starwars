@@ -1,15 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PlanetContext from '../../context/PlanetContext';
 import useFilter from '../../hooks/useFilter';
 import city from '../../utils/Array';
 import { TableContainer, TableList } from './style';
+import { valuesTable } from '../../utils/KeysFilter';
 
 const Forms = () => {
   const {
     data,
     input,
-    body } = useContext(PlanetContext);
-  const [header, setHeader] = useState([]);
+    body,
+  } = useContext(PlanetContext);
   const { filterByName, dataSort } = useFilter();
 
   useEffect(() => {
@@ -22,7 +23,6 @@ const Forms = () => {
 
   useEffect(() => {
     if (data.length > 0) {
-      setHeader(Object.keys(data[0]));
       dataSort();
     }
   }, [data]);
@@ -33,7 +33,7 @@ const Forms = () => {
         <table>
           <thead>
             <tr>
-              {header.map((item) => (
+              {valuesTable.map((item) => (
                 <th key={ item }>{item}</th>
               ))}
             </tr>

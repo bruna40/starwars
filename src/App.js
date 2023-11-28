@@ -10,9 +10,7 @@ function App() {
   return (
     <ThemeProvider theme={ defaultTheme }>
       <PlanetProvider>
-        <header>
-          <Header />
-        </header>
+        <Header />
         <Forms />
       </PlanetProvider>
       <GlobalStyle />

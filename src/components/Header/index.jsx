@@ -6,6 +6,7 @@ import Select from '../Select';
 import Order from '../Order';
 import PlanetContext from '../../context/PlanetContext';
 import useFilter from '../../hooks/useFilter';
+import { HeaderContainer, Title } from './style';
 
 export default function Header() {
   const {
@@ -23,16 +24,21 @@ export default function Header() {
     }
   }, [arrayFiltered]);
   return (
-    <>
-      <h1>Star Wars - Planets search</h1>
-      <Input />
-      <Select />
-      {arrayFiltered.length > 0
+    <HeaderContainer>
+      <Title>
+        <h1>Star Wars - Planets search</h1>
+        <Input />
+      </Title>
+      <div>
+        <Select />
+        {arrayFiltered.length > 0
           && arrayFiltered.map((filt) => (
             <ButtonDeleteFilter id={ filt } key={ filt } nome={ filt } />
           ))}
-      <Order />
-      <ButtonGeral />
-    </>
+        <Order />
+        <ButtonGeral />
+      </div>
+
+    </HeaderContainer>
   );
 }
