@@ -43,7 +43,7 @@ const Forms = () => {
 
   return (
     <div>
-      <h1>Forms</h1>
+      <h1>Star Wars - Planets search</h1>
       <Input />
       <Select />
       {arrayFiltered.length > 0
