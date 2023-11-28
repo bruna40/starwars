@@ -8,7 +8,7 @@ const useFilter = () => {
 
   const filterByName = () => {
     const nome = data
-      .filter((planet) => planet.name.includes(input));
+      .filter((planet) => planet.name.toLowerCase().includes(input.toLowerCase()));
     setBody(nome);
   };
   const filterByCategories = () => {
