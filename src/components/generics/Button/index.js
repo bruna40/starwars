@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PlanetContext from '../context/PlanetContext';
+import PlanetContext from '../../../context/PlanetContext';
 
 const ButtonGeral = () => {
   const { setArrayFiltered, setBody, data } = useContext(PlanetContext);

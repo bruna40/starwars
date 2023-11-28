@@ -53,8 +53,7 @@ const PlanetProvider = ({ children }) => {
   }, [Ordenation]);
 
   useEffect(() => {
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
-    fetch('https://swapi-trybe.herokuapp.com/api/planets/')
+    fetch('https://swapi.dev/api/planets')
       .then((response) => response.json())
       .then((infos) => {
         const planets = infos.results.map((planet) => {

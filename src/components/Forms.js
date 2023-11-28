@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ButtonDeleteFilter from './ButtonDeleteFilter';
-import ButtonGeral from './ButtonGeral';
+import ButtonGeral from './generics/Button';
 import Input from './Input';
 import Select from './Select';
 import PlanetContext from '../context/PlanetContext';
