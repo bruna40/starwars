@@ -30,3 +30,12 @@ export const Title = styled.div`
         font-size: 1.5rem;
     }
 `;
+
+export const Search = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    width: 100%;
+
+`;

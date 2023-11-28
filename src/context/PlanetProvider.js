@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
+import axios from 'axios';
 import PlanetContext from './PlanetContext';
 
 const PlanetProvider = ({ children }) => {
@@ -53,15 +54,16 @@ const PlanetProvider = ({ children }) => {
   }, [Ordenation]);
 
   useEffect(() => {
-    fetch('https://swapi.dev/api/planets')
-      .then((response) => response.json())
-      .then((infos) => {
-        const planets = infos.results.map((planet) => {
-          delete planet.residents; // vai deletar o campo residents
+    axios
+      .get('https://swapi.dev/api/planets')
+      .then((response) => {
+        const planets = response.data.results.map((planet) => {
+          delete planet.residents;
           return planet;
         });
         setData(planets);
-      });
+      })
+      .catch((error) => console.log('Erro ao carregar os dados da API', error.message));
   }, []);
 
   return (
