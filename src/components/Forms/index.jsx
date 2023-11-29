@@ -4,6 +4,8 @@ import useFilter from '../../hooks/useFilter';
 import city from '../../utils/Array';
 import { TableContainer, TableList } from './style';
 import { valuesTable } from '../../utils/KeysFilter';
+import SkeletonCard from '../skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Forms = () => {
   const {
@@ -39,7 +41,7 @@ const Forms = () => {
             </tr>
           </thead>
           <tbody>
-            {body.map((item) => (
+            {body.length > 0 ? body.map((item) => (
               <tr key={ item }>
                 {Object.values(item).map((value, chave) => (city.includes(value) ? (
                   <td key={ chave } data-testid="planet-name">
@@ -49,7 +51,7 @@ const Forms = () => {
                   <td key={ chave }>{value}</td>
                 )))}
               </tr>
-            ))}
+            )) : <SkeletonCard /> }
           </tbody>
         </table>
       </TableList>

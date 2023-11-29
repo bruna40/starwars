@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import GlobalStyle from './styles/global';
 import PlanetProvider from './context/PlanetProvider';
 import Forms from './components/Forms/index';
@@ -11,7 +12,9 @@ function App() {
     <ThemeProvider theme={ defaultTheme }>
       <PlanetProvider>
         <Header />
-        <Forms />
+        <SkeletonTheme color="#202020" highlightColor="#444">
+          <Forms />
+        </SkeletonTheme>
       </PlanetProvider>
       <GlobalStyle />
     </ThemeProvider>
